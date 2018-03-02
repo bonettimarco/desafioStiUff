@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @dado.nome %>
+</p>
+
+<p>
+  <strong>Telefone:</strong>
+  <%= @dado.telefone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @dado.email %>
+</p>
+
+<p>
+  <strong>Uffmail:</strong>
+  <%= @dado.uffmail %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @dado.status %>
+</p>
+
+<%= link_to 'Edit', edit_dado_path(@dado) %> |
+<%= link_to 'Back', dados_path %>
