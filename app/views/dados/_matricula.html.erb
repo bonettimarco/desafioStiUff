@@ -1,0 +1,7 @@
+<%= form_tag :action => 'dadoselecionado' do |f| %>
+
+  <div class="field">
+  Matrícula: <%= text_field :dados, :matricula %>
+  </div>
+  <%= submit_tag 'Pesquisar' %>
+<% end %>

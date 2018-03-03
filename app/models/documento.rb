@@ -1,5 +1,6 @@
 class Documento < ActiveRecord::Base
-        has_attached_file :file 
+           require 'csv' 
+           has_attached_file :file 
 
     validates_attachment :file, presence: true, content_type: { content_type: ["application/vnd.ms-excel", 
              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",

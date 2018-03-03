@@ -9,6 +9,20 @@ Rails.application.configure do
   Paperclip.options[:command_path] = "/usr/bin/"
   Paperclip.options[:content_type_mappings] = {:tab => "text/plain"}
   
+  config.action_mailer.perform_deliveries=true
+  config.action_mailer.delivery_method = :smtp
+  host = 'desafiostiuff-bonettimarco.c9users.io' # Don't use this literally; use your local dev host instead
+  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
+  # SMTP settings for gmail
+
+	config.action_mailer.smtp_settings = {
+		:address              => "smtp.gmail.com",
+		:port                 => 587,
+		:user_name            => "emailtesteinjunior@gmail.com",
+		:password             => "railsrulez",
+		:authentication       => "plain",
+		:enable_starttls_auto => true
+	} 
   # Do not eager load code on boot.
   config.eager_load = false
 

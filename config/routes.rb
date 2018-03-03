@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+  get 'paginas_estaticas/home'
+
   resources :documentos
   resources :dados
+  root "paginas_estaticas#home"
+  get 'selecionadado' => 'dados#selecionadado'
+  post 'selecionadado' => 'dados#dadoselecionado'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

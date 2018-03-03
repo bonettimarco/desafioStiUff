@@ -1,0 +1,10 @@
+<div class="jumbotron">
+    <h3> <%= @dado.nome %>, por favor escolha uma das opções abaixo para o seu UFFMail<br></h3>
+1 - <%= link_to @opcoes[0]+'@id.uff.br', edit_dado_path(@dado.id, uffmail: @opcoes[0]+'@id.uff.br') %><br>
+2 - <%= link_to @opcoes[1]+'@id.uff.br', edit_dado_path(@dado.id, uffmail: @opcoes[1]+'@id.uff.br') %><br>
+3 - <%= link_to @opcoes[2]+'@id.uff.br', edit_dado_path(@dado.id, uffmail: @opcoes[2]+'@id.uff.br') %><br>
+4 - <%= link_to @opcoes[3]+'@id.uff.br', edit_dado_path(@dado.id, uffmail: @opcoes[3]+'@id.uff.br') %><br>
+5 - <%= link_to @opcoes[4]+'@id.uff.br', edit_dado_path(@dado.id, uffmail: @opcoes[4]+'@id.uff.br') %><br>
+
+</div>
+

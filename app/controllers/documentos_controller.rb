@@ -1,4 +1,5 @@
 class DocumentosController < ApplicationController
+    require 'csv'  
   before_action :set_documento, only: [:show, :edit, :update, :destroy]
 
   # GET /documentos
@@ -28,7 +29,8 @@ class DocumentosController < ApplicationController
 
     respond_to do |format|
       if @documento.save
-        format.html { redirect_to @documento, notice: 'Documento was successfully created.' }
+        importa_dados
+        format.html { redirect_to dados_path, notice: 'Documento foi importado com sucesso.' }
         format.json { render :show, status: :created, location: @documento }
       else
         format.html { render :new }
@@ -62,6 +64,20 @@ class DocumentosController < ApplicationController
   end
 
   private
+  #método que trata o arquivo CSV para importar para o BD
+  def importa_dados
+        csv_text = File.read(@documento.file.path) #leitura do arquivo
+        csv = CSV.parse(csv_text, :headers => false, :col_sep => ",") #normalização do tab
+        linhas = csv[1..csv.count] #eliminação do cabeçalho
+        linhas.each do |row| #processo de gravação de dados no BD
+        if checa = Dado.find_by(matricula: row[1])
+        else
+          store = Dado.new(nome: row[0],matricula:row[1],telefone:row[2],email:row[3],uffmail:row[4],status:row[5]) 
+          store.save
+        end
+        end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_documento
       @documento = Documento.find(params[:id])
@@ -69,6 +85,6 @@ class DocumentosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def documento_params
-      params.fetch(:documento, {})
+      params.require(:documento).permit(:file)
     end
 end
